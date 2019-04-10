@@ -89,4 +89,4 @@ while True:
     if checkTime():
         print("true")
         checkVideo()
-    sleep(60)
+    sleep(int(key["delay"]))
