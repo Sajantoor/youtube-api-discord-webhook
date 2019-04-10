@@ -1,7 +1,7 @@
 # Youtube API Discord Webhook
 ## Uses the YouTube API and Discord webhook together to send a message when a channel uploads a video!
 
-> This Python Script uses the YouTube API to search for videos (during a certain time span specified in the [JSON file](../master/keys.json)) to send a message, usually in the form of notifying server members that a new video from a certain channel has come out. This Python file is designed to run forever or until the user closes it. This Python script doesn't require access to your Google account, instead it takes publically avalible information using a YouTube API Key.
+> This Python Script uses the YouTube API to search for videos (during a certain time span specified in the [JSON file](../master/keys.json)) to send a message, usually in the form of notifying server members that a new video from a certain channel has come out. This Python file is designed to run forever or until the user closes it. This Python script doesn't require access to your Google account, instead it takes publicly avalible information using a YouTube API Key.
 
 ## [JSON file](../master/keys.json)
 If you don't know much about programming, programming in Python or don't want to mess with can edit Python file and easily make changes, can use the JSON file to specifiy their [Channel ID](#Channel--ID), [YouTube Data V3 API Key](#YouTube--Data--V3--API--Key), [Discord Webhook URL](#Discord--Webhook--URL), [Start and End Time](#Start--and--End--Time), and [Delay Time](#Delay--Time). 
