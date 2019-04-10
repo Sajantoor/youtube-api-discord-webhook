@@ -29,6 +29,6 @@ If you don't know much about programming, programming in Python or don't want to
 ### Start and End Time
 > As the YouTube API has a quota and each action has a quota cost (100 quota cost in this case). It's important to not waste your precious quota. Therefore there is a start and end time which is used conserve the quota. Make sure your upload time is inbetween this start or stop time. If you want your start and stop time to run for long durations (for example an hour or more) make sure to change the delay time. 
 
-### Delay Time
+### Delay
 > The delay time is how long it takes to check if it's within the start and end time. This value is in seconds. Increase this value if you have start and stop time running for long duration to decrease quota usage. Remember you have 10,000 units of quota and each time it checks for a video it uses 100 units of quota. 
 
