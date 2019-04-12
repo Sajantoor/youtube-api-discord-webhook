@@ -19,8 +19,8 @@ If you don't know much about programming, programming in Python or don't want to
   "channelID": "your channel id here",
   "APIKey": "your YouTube Data v3 API key here",
   "webhook": "your discord webhook url here",
-  "startTime": "your start time here in 24 hour time (eg, 13:15) (make sure minutes are "2" not "02")",
-  "endTime": "your end time here in 24 hour time (eg, 13:15) (make sure minutes are "2" not "02")"
+  "startTime": "your start time here in 24 hour time (eg, 13:15)",
+  "endTime": "your end time here in 24 hour time (eg, 13:15)"
   "delay": "your delay must be a whole number (in seconds)"
 }
 ```
