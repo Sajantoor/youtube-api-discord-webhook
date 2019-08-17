@@ -5,7 +5,7 @@ from discord_webhook import DiscordWebhook, DiscordEmbed
 from datetime import datetime, time
 from time import sleep
 # Variables
-previousVideo = False;
+previousVideo = False
 
 # Get secret keys from JSON file
 with open('keys.json') as json_file:
@@ -35,35 +35,40 @@ webhook = DiscordWebhook(url=key["webhook"])
 
 # sends message via webhook on discord
 def discordPing(title, description, url):
-    webhook.content = "**New video @everyone** \n" + title + "\n" + description + "\n" + url
+    webhook.content = "**BRAND NEW VIDEO @everyone** \n" + title + "\n" + description + "\n" + url
     webhook.execute()
     print("Successful notified your discord server!")
 
 # Gets your latest video
 def intialize():
     data = vidRequest.execute()
+    print(data)
     global previousVideo
-    previousVideo = data["items"][0]["snippet"]["title"];
+    previousVideo = data["items"][0]["id"]["videoId"]
+    print(data["items"][0]["snippet"]["title"])
     print(previousVideo)
 
 # Checks if there is a new video
 def checkVideo():
     global previousVideo
     data = vidRequest.execute()
-    workingVideo = data["items"][0]["snippet"]["title"]
+    workingVideo = data["items"][0]["id"]["videoId"]
+    print("Checking video!")
 
     # Checks if the latest video is equal to the working video, video it proccessed right now
     if workingVideo != previousVideo:
+        print("Found a new video!")
         # gets more data, title of the video, description of the video, and url of the video.
-        title = data["items"][0]["snippet"]["title"].replace("&#39;", "'");
+        title = data["items"][0]["snippet"]["title"].replace("&#39;", "'")
         # The first "-" is used in my description and this splits it to the first line, you can use something else
         description = data["items"][0]["snippet"]["description"].split("-")[0]
-        url = "https://youtu.be/" + data["items"][0]["id"]["videoId"]
+        url = "https://youtu.be/" + workingVideo
         # passes title, description and url for the discord message
         discordPing(title, description, url)
+        print(previousVideo)
         # sets previous video as working video
         previousVideo = workingVideo
-
+        return
 # checks if now is inbetween start and end times
 def in_between(now, start, end):
     if start <= end:
@@ -77,9 +82,14 @@ def checkTime():
     # checks if time now is inbetween start and endtimes specified in the json file and returns accordingly
     # this assumes you schedule your videos (if you aren't, you should it's great and really useful!)
     if in_between(datetime.now().time(), time(int(startTime.split(":")[0]), int(startTime.split(":")[1])), time(int(endTime.split(":")[0]), int(endTime.split(":")[1]))):
+        print("Time threshold reached!")
         return True
+
     else:
+        print("This is not the desired time to check for the video!")
+        print("Corect time is: " + startTime)
         return False
+
 
 intialize()
 
@@ -87,6 +97,7 @@ intialize()
 while True:
     # if this time is true then it checks for videos
     if checkTime():
-        print("true")
+        print(previousVideo)
         checkVideo()
+        print(previousVideo)
     sleep(int(key["delay"]))
